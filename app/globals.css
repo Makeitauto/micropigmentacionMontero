@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-premium-white text-premium-black font-body antialiased;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+    letter-spacing: 0.02em;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Animaciones premium personalizadas */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  background-size: 1000px 100%;
+}
+
+/* Efectos de hover premium */
+.hover-lift {
+  @apply transition-all duration-300 ease-out;
+}
+
+.hover-lift:hover {
+  @apply -translate-y-1 shadow-premium-lg;
+}
+
+/* Gradientes premium */
+.gradient-gold {
+  background: linear-gradient(135deg, #C6A667 0%, #D4B87A 100%);
+}
+
+.gradient-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(17, 17, 17, 0.4) 0%,
+    rgba(17, 17, 17, 0.8) 100%
+  );
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-premium-white;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-premium-gold rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-premium-gold-light;
+}
+
+/* Neomorfismo Moderno - Efectos 3D */
+.neomorphic-raised {
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 
+    8px 8px 16px rgba(0, 0, 0, 0.08),
+    -8px -8px 16px rgba(255, 255, 255, 0.9),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: perspective(1000px) translateZ(0);
+}
+
+.neomorphic-raised:hover {
+  box-shadow: 
+    12px 12px 24px rgba(0, 0, 0, 0.12),
+    -12px -12px 24px rgba(255, 255, 255, 1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+  transform: perspective(1000px) translateZ(10px) scale(1.02);
+}
+
+.neomorphic-inset {
+  background: #F5F1EB;
+  border-radius: 12px;
+  box-shadow: 
+    inset 6px 6px 12px rgba(0, 0, 0, 0.08),
+    inset -6px -6px 12px rgba(255, 255, 255, 0.9),
+    0 0 0 rgba(0, 0, 0, 0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: perspective(1000px) translateZ(0);
+}
+
+.neomorphic-inset:hover {
+  box-shadow: 
+    inset 8px 8px 16px rgba(0, 0, 0, 0.12),
+    inset -8px -8px 16px rgba(255, 255, 255, 1),
+    0 2px 8px rgba(0, 0, 0, 0.05);
+  transform: perspective(1000px) translateZ(-5px) scale(0.98);
+}
+
+.neomorphic-icon-raised {
+  background: linear-gradient(135deg, #C6A667 0%, #D4B87A 100%);
+  border-radius: 12px;
+  box-shadow: 
+    6px 6px 12px rgba(198, 166, 103, 0.3),
+    -6px -6px 12px rgba(255, 255, 255, 0.8),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: perspective(1000px) translateZ(5px);
+}
+
+.neomorphic-icon-raised:hover {
+  box-shadow: 
+    8px 8px 16px rgba(198, 166, 103, 0.4),
+    -8px -8px 16px rgba(255, 255, 255, 1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+  transform: perspective(1000px) translateZ(15px) scale(1.1);
+}
+
+.neomorphic-icon-inset {
+  background: linear-gradient(135deg, #E5E1DC 0%, #F5F1EB 100%);
+  border-radius: 12px;
+  box-shadow: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.1),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.9),
+    0 0 0 rgba(0, 0, 0, 0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: perspective(1000px) translateZ(0);
+}
+
+.neomorphic-icon-inset:hover {
+  box-shadow: 
+    inset 6px 6px 12px rgba(0, 0, 0, 0.15),
+    inset -6px -6px 12px rgba(255, 255, 255, 1),
+    0 2px 6px rgba(0, 0, 0, 0.05);
+  transform: perspective(1000px) translateZ(-3px) scale(0.95);
+}
+
+/* Efecto 3D para el título */
+.neomorphic-title {
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.1),
+    -1px -1px 2px rgba(255, 255, 255, 0.8);
+  transform: perspective(1000px) translateZ(0);
+  transition: all 0.3s ease;
+}
+
+/* Animación de profundidad */
+@keyframes float-3d {
+  0%, 100% {
+    transform: perspective(1000px) translateZ(0) rotateX(0deg);
+  }
+  50% {
+    transform: perspective(1000px) translateZ(10px) rotateX(2deg);
+  }
+}
+
+.float-3d {
+  animation: float-3d 6s ease-in-out infinite;
+}
+
