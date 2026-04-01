@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Instagram, Facebook, Mail, Phone } from 'lucide-react'
+import { Instagram, Facebook, Mail, MapPin, Phone } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -47,13 +47,28 @@ export default function Footer() {
           <div>
             <h4 className="font-display font-semibold mb-4 tracking-wide-premium">Contacto</h4>
             <ul className="space-y-3 text-sm">
-              <li className="flex items-center space-x-3 text-premium-taupe">
-                <Phone size={16} />
-                <span>+34 XXX XXX XXX</span>
+              <li className="flex items-start space-x-3 text-premium-taupe">
+                <Phone size={16} className="mt-0.5 shrink-0" />
+                <a href="tel:+34654764909" className="hover:text-premium-gold transition-colors">
+                  +34 654 764 909
+                </a>
               </li>
-              <li className="flex items-center space-x-3 text-premium-taupe">
-                <Mail size={16} />
-                <span>info@microcapilarmontero.com</span>
+              <li className="flex items-start space-x-3 text-premium-taupe">
+                <Mail size={16} className="mt-0.5 shrink-0" />
+                <a
+                  href="mailto:contacto@microcapilarmontero.com"
+                  className="break-all hover:text-premium-gold transition-colors"
+                >
+                  contacto@microcapilarmontero.com
+                </a>
+              </li>
+              <li className="flex items-start space-x-3 text-premium-taupe">
+                <MapPin size={16} className="mt-0.5 shrink-0" />
+                <span>
+                  Carrer del Mestre Gozalbo, 18
+                  <br />
+                  46005 Valencia
+                </span>
               </li>
             </ul>
           </div>

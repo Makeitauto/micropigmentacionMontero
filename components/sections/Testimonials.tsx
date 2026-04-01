@@ -2,46 +2,41 @@
 
 import { motion } from 'framer-motion'
 import { Star, Quote } from 'lucide-react'
-import { useState } from 'react'
+
+function initialsFromName(name: string) {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((p) => p[0]?.toUpperCase() ?? '')
+    .join('')
+}
 
 const testimonials = [
   {
     id: 1,
-    name: 'María González',
-    treatment: 'Microblading Cejas',
+    name: 'Marcos L.',
+    treatment: 'Efecto Rapado',
     rating: 5,
-    text: 'Increíble experiencia. Las cejas quedaron perfectas, muy naturales. El proceso fue profesional y el resultado superó mis expectativas. Totalmente recomendable.',
-    image: '/images/testimonials/testimonial-1.jpg',
+    text: 'Buscaba una solución discreta para mi alopecia y el efecto rapado me devolvió un aspecto de cabeza recién rapada muy natural. La línea frontal y el tono del pigmento quedaron impecables. Trato cercano y muy profesional.',
   },
   {
     id: 2,
-    name: 'Ana Martínez',
-    treatment: 'Aquacolor Lip',
+    name: 'Javier T.',
+    treatment: 'Densificación',
     rating: 5,
-    text: 'Después de años buscando un profesional de confianza, finalmente encontré la excelencia. Los labios quedaron con un color natural perfecto. Servicio impecable.',
-    image: '/images/testimonials/testimonial-2.jpg',
+    text: 'Tenía claridad en la coronilla y tras la densificación el cuero cabelludo gana volumen visual sin parecer artificial. El resultado es homogéneo y duradero; el proceso fue claro de principio a fin.',
   },
   {
     id: 3,
-    name: 'Laura Sánchez',
-    treatment: 'Micropigmentación Capilar SMP',
+    name: 'Roberto P.',
+    treatment: 'Post Cirugía o Injerto',
     rating: 5,
-    text: 'La solución perfecta para mi alopecia. El resultado es tan natural que nadie nota la diferencia. Profesionalidad y atención al detalle en cada paso.',
-    image: '/images/testimonials/testimonial-3.jpg',
-  },
-  {
-    id: 4,
-    name: 'Carmen Ruiz',
-    treatment: 'Corrección de Areolas',
-    rating: 5,
-    text: 'Un proceso delicado realizado con máxima profesionalidad. El resultado es perfecto y ha mejorado mi confianza significativamente. Gracias por vuestra dedicación.',
-    image: '/images/testimonials/testimonial-4.jpg',
+    text: 'Después del injerto quería integrar mejor la zona donante y suavizar transiciones. El trabajo post injerto unificó el aspecto y camufló detalles que me inquietaban. Precisión, higiene y resultados muy realistas.',
   },
 ]
 
 export default function Testimonials() {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0)
-
   return (
     <section className="py-24 md:py-32 bg-premium-skin-light">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -53,17 +48,17 @@ export default function Testimonials() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-display font-light text-premium-black mb-4 tracking-wider-premium">
+          <h2 className="mb-4 break-words px-1 text-3xl font-display font-light tracking-tight text-premium-black sm:text-4xl sm:tracking-normal md:text-5xl md:tracking-wider-premium">
             Opiniones de Nuestros Clientes
           </h2>
           <div className="w-24 h-px bg-premium-gold mx-auto mb-6" />
           <p className="text-lg text-premium-blue-gray font-body font-light max-w-2xl mx-auto leading-relaxed">
-            La satisfacción de nuestros clientes es nuestra mayor recompensa.
+            Experiencias reales en micropigmentación capilar: efecto rapado, densificación y casos post injerto.
           </p>
         </motion.div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
@@ -86,14 +81,16 @@ export default function Testimonials() {
               </div>
               <div className="flex items-center space-x-4">
                 <div
-                  className="w-12 h-12 rounded-full bg-cover bg-center"
-                  style={{ backgroundImage: `url(${testimonial.image})` }}
-                />
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-premium-gold/15 font-display text-sm font-semibold text-premium-gold"
+                  aria-hidden
+                >
+                  {initialsFromName(testimonial.name)}
+                </div>
                 <div>
                   <p className="font-display font-semibold text-premium-black text-sm tracking-wide-premium">
                     {testimonial.name}
                   </p>
-                  <p className="font-body text-xs text-premium-blue-gray">
+                  <p className="font-body text-xs text-premium-gold font-medium">
                     {testimonial.treatment}
                   </p>
                 </div>
@@ -105,4 +102,3 @@ export default function Testimonials() {
     </section>
   )
 }
-

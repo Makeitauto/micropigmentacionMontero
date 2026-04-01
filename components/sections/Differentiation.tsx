@@ -6,8 +6,9 @@ import { Shield, Sparkles, Award, Heart } from 'lucide-react'
 const features = [
   {
     icon: Shield,
-    title: 'Pigmentos Médicos',
-    description: 'Utilizamos únicamente pigmentos de grado médico certificados, garantizando seguridad y durabilidad excepcional.',
+    title: 'Pigmentos orgánicos estabilizados para SMP',
+    description:
+      'Líneas formuladas para micropigmentación capilar: origen orgánico, estabilizados para una implantación uniforme y un envejecimiento del color natural en el tiempo. Biocompatibles, sin metales pesados y pensados para resultados hiperrealistas con máxima seguridad.',
   },
   {
     icon: Sparkles,
@@ -38,7 +39,7 @@ export default function Differentiation() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-display font-light text-premium-black mb-4 tracking-wider-premium neomorphic-title float-3d">
+          <h2 className="neomorphic-title float-3d mb-4 break-words px-1 text-3xl font-display font-light tracking-tight text-premium-black sm:text-4xl sm:tracking-normal md:text-5xl md:tracking-wider-premium">
             Por Qué Elegirnos
           </h2>
           <div className="w-24 h-px bg-premium-gold mx-auto mb-6" />
@@ -96,10 +97,10 @@ export default function Differentiation() {
                     </motion.div>
                   </div>
                   
-                  <h3 className="text-xl font-display font-semibold text-premium-black mb-3 tracking-wide-premium relative z-10">
+                  <h3 className="relative z-10 mb-3 break-words text-base font-display font-semibold leading-snug tracking-tight text-premium-black min-[420px]:text-lg sm:text-xl sm:tracking-wide md:tracking-wide-premium">
                     {feature.title}
                   </h3>
-                  <p className="text-premium-blue-gray font-body text-sm leading-relaxed flex-grow relative z-10">
+                  <p className="relative z-10 flex-grow text-sm font-body leading-relaxed text-premium-blue-gray">
                     {feature.description}
                   </p>
                   

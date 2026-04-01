@@ -20,7 +20,8 @@ const steps = [
     number: '03',
     icon: Sparkles,
     title: 'Procedimiento',
-    description: 'Aplicación con técnicas avanzadas y pigmentos de grado médico de máxima calidad.',
+    description:
+      'Aplicación con técnicas avanzadas y pigmentos orgánicos estabilizados para SMP, seleccionados para óptima retención y acabado natural.',
   },
   {
     number: '04',
@@ -48,7 +49,7 @@ export default function Process() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-display font-light text-premium-black mb-4 tracking-wider-premium">
+          <h2 className="mb-4 break-words px-1 text-3xl font-display font-light tracking-tight text-premium-black sm:text-4xl sm:tracking-normal md:text-5xl md:tracking-wider-premium">
             Nuestro Proceso
           </h2>
           <div className="w-24 h-px bg-premium-gold mx-auto mb-6" />

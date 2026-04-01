@@ -1,8 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-import Image from 'next/image'
 
 const treatments = [
   {
@@ -10,8 +8,7 @@ const treatments = [
     title: 'Efecto Rapado',
     subtitle: 'Alopecia Androgénica o Universal',
     description: 'Para tratar la alopecia androgénica o la alopecia universal. Se diseña una línea frontal y se elige un tono para el pigmento que imite el color del folículo en su crecimiento.',
-    image: '/images/treatments/capilar.jpg',
-    price: '900€ - 1500€',
+    image: '/images/efecto%20rapado.jpeg',
     features: ['Alopecia Androgénica', 'Alopecia Universal', 'Diseño Personalizado'],
   },
   {
@@ -19,8 +16,7 @@ const treatments = [
     title: 'Densificación',
     subtitle: 'Alopecia Difusa o Traumática',
     description: 'Para tratar la alopecia difusa o traumática. Se rellena los espacios que se requiera, para dar un efecto de mayor densidad.',
-    image: '/images/treatments/capilar.jpg',
-    price: '800€ - 1200€',
+    image: '/images/densificacion.jpeg',
     features: ['Alopecia Difusa', 'Alopecia Traumática', 'Mayor Densidad'],
   },
   {
@@ -28,15 +24,17 @@ const treatments = [
     title: 'Post Cirugía o Injerto',
     subtitle: 'Alopecia Cicatricial o Areata',
     description: 'Para tratar la alopecia cicatricial o areata. Se rellena las zonas afectadas, con un tono de pigmento que imita el color natural del pelo del cliente ocultando así cicatrices o zonas afectadas.',
-    image: '/images/treatments/capilar.jpg',
-    price: '500€ - 1500€',
+    image: '/images/postinjerto.jpeg',
     features: ['Alopecia Cicatricial', 'Alopecia Areata', 'Ocultación de Cicatrices'],
   },
 ]
 
 export default function Treatments() {
   return (
-    <section id="tratamientos" className="py-24 md:py-32 bg-premium-skin-light">
+    <section
+      id="tratamientos"
+      className="py-24 md:py-32 bg-premium-skin-light scroll-mt-20"
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -46,7 +44,7 @@ export default function Treatments() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-display font-light text-premium-black mb-4 tracking-wider-premium">
+          <h2 className="mb-4 break-words px-1 text-3xl font-display font-light tracking-tight text-premium-black sm:text-4xl sm:tracking-normal md:text-5xl md:tracking-wider-premium">
             Nuestros Tratamientos
           </h2>
           <div className="w-24 h-px bg-premium-gold mx-auto mb-6" />
@@ -76,7 +74,7 @@ export default function Treatments() {
                     <div className="absolute inset-0 bg-gradient-to-t from-premium-black/60 to-transparent" />
                   </div>
                   <div className="absolute bottom-6 left-6 right-6">
-                    <h3 className="text-2xl md:text-3xl font-display font-light text-premium-white mb-1 tracking-wider-premium">
+                    <h3 className="mb-1 break-words text-xl font-display font-light tracking-tight text-premium-white min-[400px]:text-2xl md:text-3xl md:tracking-wider-premium">
                       {treatment.title}
                     </h3>
                     <p className="text-premium-gold font-body text-sm tracking-wide-premium">
@@ -91,17 +89,8 @@ export default function Treatments() {
                     {treatment.description}
                   </p>
 
-                  {/* Price */}
-                  <div className="mb-6">
-                    <div className="inline-flex items-center px-4 py-2 bg-premium-gold/10 rounded-premium border border-premium-gold/20">
-                      <span className="text-premium-gold font-display font-semibold text-lg tracking-wide-premium">
-                        {treatment.price}
-                      </span>
-                    </div>
-                  </div>
-
                   {/* Features */}
-                  <div className="mb-6">
+                  <div>
                     <div className="flex flex-wrap gap-2">
                       {treatment.features.map((feature) => (
                         <span
@@ -113,15 +102,6 @@ export default function Treatments() {
                       ))}
                     </div>
                   </div>
-
-                  {/* CTA */}
-                  <motion.button
-                    whileHover={{ x: 5 }}
-                    className="flex items-center space-x-2 text-premium-gold font-body font-medium text-sm group-hover:text-premium-gold-light transition-colors"
-                  >
-                    <span>Saber más</span>
-                    <ArrowRight size={16} />
-                  </motion.button>
                 </div>
               </div>
             </motion.div>

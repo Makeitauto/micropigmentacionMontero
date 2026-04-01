@@ -1,8 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Send, Mail, Phone, MapPin } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Send, Mail, Phone, MapPin, CheckCircle, AlertCircle } from 'lucide-react'
 import { useState } from 'react'
+
+type Status = 'idle' | 'submitting' | 'success' | 'error'
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -13,17 +15,32 @@ export default function ContactForm() {
     message: '',
   })
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [status, setStatus] = useState<Status>('idle')
+  const [errorMsg, setErrorMsg] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    // Aquí integrarías con Supabase o tu API
-    setTimeout(() => {
-      setIsSubmitting(false)
-      alert('¡Gracias por tu consulta! Te contactaremos pronto.')
+    setStatus('submitting')
+    setErrorMsg('')
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error ?? 'Error al enviar el mensaje.')
+      }
+
+      setStatus('success')
       setFormData({ name: '', email: '', phone: '', treatment: '', message: '' })
-    }, 1000)
+    } catch (err: unknown) {
+      setStatus('error')
+      setErrorMsg(err instanceof Error ? err.message : 'Error al enviar el mensaje.')
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -44,7 +61,7 @@ export default function ContactForm() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-display font-light text-premium-black mb-4 tracking-wider-premium">
+          <h2 className="mb-4 break-words px-1 text-3xl font-display font-light tracking-tight text-premium-black sm:text-4xl sm:tracking-normal md:text-5xl md:tracking-wider-premium">
             Solicita tu Cita
           </h2>
           <div className="w-24 h-px bg-premium-gold mx-auto mb-6" />
@@ -63,7 +80,7 @@ export default function ContactForm() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-display font-light text-premium-black mb-6 tracking-wider-premium">
+              <h3 className="mb-6 break-words text-xl font-display font-light tracking-tight text-premium-black sm:text-2xl sm:tracking-wider-premium">
                 Información de Contacto
               </h3>
               <p className="text-premium-blue-gray font-body leading-relaxed mb-8">
@@ -80,7 +97,12 @@ export default function ContactForm() {
                   <p className="font-display font-semibold text-premium-black mb-1 tracking-wide-premium">
                     Teléfono
                   </p>
-                  <p className="font-body text-premium-blue-gray">+34 XXX XXX XXX</p>
+                  <a
+                    href="tel:+34654764909"
+                    className="font-body text-premium-blue-gray hover:text-premium-gold transition-colors"
+                  >
+                    +34 654 764 909
+                  </a>
                 </div>
               </div>
 
@@ -92,7 +114,12 @@ export default function ContactForm() {
                   <p className="font-display font-semibold text-premium-black mb-1 tracking-wide-premium">
                     Email
                   </p>
-                  <p className="font-body text-premium-blue-gray">info@microcapilarmontero.com</p>
+                  <a
+                    href="mailto:contacto@microcapilarmontero.com"
+                    className="font-body text-premium-blue-gray hover:text-premium-gold transition-colors break-all"
+                  >
+                    contacto@microcapilarmontero.com
+                  </a>
                 </div>
               </div>
 
@@ -104,7 +131,11 @@ export default function ContactForm() {
                   <p className="font-display font-semibold text-premium-black mb-1 tracking-wide-premium">
                     Ubicación
                   </p>
-                  <p className="font-body text-premium-blue-gray">[Dirección del estudio]</p>
+                  <p className="font-body text-premium-blue-gray leading-relaxed">
+                    Carrer del Mestre Gozalbo, 18
+                    <br />
+                    46005 Valencia
+                  </p>
                 </div>
               </div>
             </div>
@@ -165,7 +196,7 @@ export default function ContactForm() {
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-premium-taupe rounded-premium focus:outline-none focus:ring-2 focus:ring-premium-gold focus:border-transparent transition-all font-body"
-                    placeholder="+34 XXX XXX XXX"
+                    placeholder="+34 654 764 909"
                   />
                 </div>
                 <div>
@@ -206,12 +237,12 @@ export default function ContactForm() {
 
               <motion.button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={status === 'submitting' || status === 'success'}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="w-full md:w-auto px-8 py-4 bg-premium-gold text-premium-white rounded-premium font-display font-medium text-base tracking-wider-premium hover:bg-premium-gold-light transition-colors duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isSubmitting ? (
+                {status === 'submitting' ? (
                   <>
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                     <span>Enviando...</span>
@@ -223,6 +254,39 @@ export default function ContactForm() {
                   </>
                 )}
               </motion.button>
+
+              <AnimatePresence>
+                {status === 'success' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="mt-5 flex items-start gap-3 p-4 bg-green-50 border border-green-200 rounded-premium"
+                  >
+                    <CheckCircle size={20} className="text-green-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-body font-medium text-green-800">¡Solicitud enviada!</p>
+                      <p className="text-sm font-body text-green-700 mt-0.5">
+                        Te hemos enviado un email de confirmación. Nos pondremos en contacto contigo en menos de 24&nbsp;horas.
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+                {status === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="mt-5 flex items-start gap-3 p-4 bg-red-50 border border-red-200 rounded-premium"
+                  >
+                    <AlertCircle size={20} className="text-red-500 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-body font-medium text-red-800">No se pudo enviar el mensaje</p>
+                      <p className="text-sm font-body text-red-700 mt-0.5">{errorMsg}</p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </form>
           </motion.div>
         </div>

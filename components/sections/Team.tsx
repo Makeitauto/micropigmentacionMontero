@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Award, GraduationCap, Heart } from 'lucide-react'
+import { GraduationCap, Heart } from 'lucide-react'
 
 export default function Team() {
   return (
@@ -15,7 +15,7 @@ export default function Team() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-display font-light text-premium-black mb-4 tracking-wider-premium">
+          <h2 className="mb-4 break-words px-1 text-3xl font-display font-light tracking-tight text-premium-black sm:text-4xl sm:tracking-normal md:text-5xl md:tracking-wider-premium">
             Nuestro Equipo
           </h2>
           <div className="w-24 h-px bg-premium-gold mx-auto mb-6" />
@@ -38,7 +38,7 @@ export default function Team() {
               <div className="relative h-96 md:h-full min-h-[400px]">
                 <div
                   className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: 'url(/images/team/profesional.jpg)' }}
+                  style={{ backgroundImage: 'url(/images/montero.jpeg)' }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-premium-black/20 to-transparent" />
                 </div>
@@ -47,8 +47,8 @@ export default function Team() {
               {/* Content */}
               <div className="p-8 md:p-12 flex flex-col justify-center">
                 <div className="mb-6">
-                  <h3 className="text-3xl font-display font-light text-premium-black mb-2 tracking-wider-premium">
-                    [Nombre del Profesional]
+                  <h3 className="mb-2 break-words text-2xl font-display font-light tracking-tight text-premium-black sm:text-3xl sm:tracking-wider-premium">
+                    Aure Montero
                   </h3>
                   <p className="text-premium-gold font-body text-sm tracking-wide-premium mb-4">
                     Especialista en Micropigmentación Premium
@@ -57,24 +57,15 @@ export default function Team() {
                 </div>
 
                 <p className="text-premium-blue-gray font-body leading-relaxed mb-6">
-                  Con más de [X] años de experiencia en micropigmentación, [Nombre] combina precisión técnica
-                  con un enfoque artístico único. Certificado en las técnicas más avanzadas de microblading,
-                  SMP y corrección, garantiza resultados naturales y duraderos para cada cliente.
+                  Soy especialista en micropigmentación capilar, una técnica avanzada para mejorar la
+                  apariencia del cabello y el cuero cabelludo de forma natural. En Micro Capilar Montero
+                  (MCM) realizo tratamientos personalizados para cada caso, trabajando densidad, definición
+                  y correcciones estéticas con máxima precisión, higiene y materiales de alta calidad,
+                  ofreciendo resultados realistas, discretos y duraderos.
                 </p>
 
                 {/* Credentials */}
                 <div className="space-y-3">
-                  <div className="flex items-start space-x-3">
-                    <Award size={20} className="text-premium-gold mt-1 flex-shrink-0" />
-                    <div>
-                      <p className="font-body font-medium text-premium-black text-sm">
-                        Certificaciones Internacionales
-                      </p>
-                      <p className="font-body text-xs text-premium-blue-gray">
-                        Formación en Europa y Corea del Sur
-                      </p>
-                    </div>
-                  </div>
                   <div className="flex items-start space-x-3">
                     <GraduationCap size={20} className="text-premium-gold mt-1 flex-shrink-0" />
                     <div>

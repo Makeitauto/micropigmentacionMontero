@@ -5,7 +5,6 @@ import BeforeAfter from '@/components/sections/BeforeAfter'
 import Team from '@/components/sections/Team'
 import Process from '@/components/sections/Process'
 import Testimonials from '@/components/sections/Testimonials'
-import Certifications from '@/components/sections/Certifications'
 import ContactForm from '@/components/sections/ContactForm'
 
 export default function Home() {
@@ -18,7 +17,6 @@ export default function Home() {
       <Team />
       <Process />
       <Testimonials />
-      <Certifications />
       <ContactForm />
     </div>
   )

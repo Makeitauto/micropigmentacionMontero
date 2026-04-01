@@ -37,7 +37,7 @@ export default function RootLayout({
     <html lang="es" className="scroll-smooth">
       <body className={`${inter.variable} ${interDisplay.variable} font-body`}>
         <Navbar />
-        <main className="min-h-screen">
+        <main className="min-h-screen w-full max-w-[100vw] overflow-x-hidden">
           {children}
         </main>
         <Footer />
